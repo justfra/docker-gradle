@@ -8,14 +8,14 @@ ENV GRADLE_VERSION 4.5
 ARG GRADLE_DOWNLOAD_SHA256=03f2a43a314ff0fb843a85ef68078e06d181c4549c1e5fb983f289382b59b5e3
 
 #Download kubectl
-ADD https://storage.googleapis.com/kubernetes-release/release/v1.6.4/bin/linux/amd64/kubectl /usr/local/bin/kubectl
+ADD https://storage.googleapis.com/kubernetes-release/release/v1.9.2/bin/linux/amd64/kubectl /usr/local/bin/kubectl
 
 RUN set -o errexit -o nounset \
 	&& echo "Installing build dependencies" \
 	#kubectl BEGIN
-	&& set -x && \
-    	&& apk add --no-cache curl ca-certificates && \
-    	&& chmod +x /usr/local/bin/kubectl && \
+	&& set -x \
+    	&& apk add --no-cache curl ca-certificates \
+    	&& chmod +x /usr/local/bin/kubectl \
 	#kubectl END
 	&& apk add --no-cache --virtual .build-deps \
 		ca-certificates \
